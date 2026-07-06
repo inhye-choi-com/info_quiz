@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정보 2 - 단원평가 퀴즈</title>
+    <style>
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .question-box {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .question-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #e9ecef;
+            border: 2px dashed #adb5bd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .options-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .options-list li:hover {
+            background: #f1f8ff;
+        }
+        .options-list input[type="radio"] {
+            margin-right: 10px;
+        }
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        .btn-check {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-check:hover {
+            background-color: #2980b9;
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+            font-size: 0.95em;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .explanation {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            background: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>단원평가 퀴즈 (정보 2)</h1>
+
+    <!-- 문제 1 -->
+    <div class="question-box" id="q1">
+        <div class="question-title">1. 데이터 수집에 관한 설명으로 알맞은 것을 보기에서 있는 대로 고르시오.</div>
+        <div class="image-placeholder">[그림 1 삽입란]</div>
+        <div style="background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 15px;">
+            [보기]<br>
+            ㉠ 관찰, 인터뷰, 설문 조사, 센서를 이용하는 방법은 데이터를 직접 수집하는 방법이다.<br>
+            ㉡ 검색 엔진과 데이터 전문 웹 사이트를 이용하면 목적에 맞는 데이터를 수집할 수 있지만 시간과 비용이 많이 든다.<br>
+            ㉢ 데이터를 수집할 때는 데이터의 객관성, 데이터의 품질, 데이터의 정확성을 확인해야 한다.
+        </div>
+        <ul class="options-list">
+            <li><label><input type="radio" name="q1_opt" value="1"> ① ㉡</label></li>
+            <li><label><input type="radio" name="q1_opt" value="2"> ② ㉢</label></li>
+            <li><label><input type="radio" name="q1_opt" value="3"> ③ ㉠, ㉡</label></li>
+            <li><label><input type="radio" name="q1_opt" value="4"> ④ ㉠, ㉢</label></li>
+            <li><label><input type="radio" name="q1_opt" value="5"> ⑤ ㉠, ㉡, ㉢</label></li>
+        </ul>
+        <button class="btn-check" onclick="checkAnswer('q1', '4')">정답 확인</button>
+        <div class="feedback" id="feedback_q1">
+            <div class="msg"></div>
+            <div class="explanation"><strong>해설:</strong> ㉠과 ㉢은 올바른 설명입니다. ㉡ 검색 엔진 등을 이용한 간접 수집 방법은 직접 수집하는 것에 비해 오히려 시간과 비용을 절약할 수 있습니다.</div>
+        </div>
+    </div>
+
+    <!-- 문제 2 -->
+    <div class="question-box" id="q2">
+        <div class="question-title">2. 데이터의 특성에 따른 종류와 활용에 관해 바르게 설명한 친구의 이름을 쓰시오.</div>
+        <div class="image-placeholder">[그림 2 삽입란]</div>
+        <div style="background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 15px;">
+            - 우현: 수치형 데이터의 예에는 성별, 혈액형, 성취 등급이 있어.<br>
+            - 예성: 키, 몸무게, 전자 우편 수는 범주형 데이터라고 할 수 있어.<br>
+            - 은지: 수집한 데이터를 체계적으로 구분하면 데이터의 활용도를 높일 수 있어.
+        </div>
+        <input type="text" id="q2_input" class="text-input" placeholder="정답을 입력하세요 (예: 홍길동)">
+        <button class="btn-check" onclick="checkTextAnswer('q2', '은지')">정답 확인</button>
+        <div class="feedback" id="feedback_q2">
+            <div class="msg"></div>
+            <div class="explanation"><strong>해설:</strong> 우현이가 말한 성별, 혈액형 등은 '범주형 데이터'이며, 예성이가 말한 키, 몸무게 등은 '수치형 데이터'입니다. 은지의 설명만 올바릅니다.</div>
+        </div>
+    </div>
+
+    <!-- 문제 3 -->
+    <div class="question-box" id="q3">
+        <div class="question-title">3. 다음 빈칸에 들어갈 알맞은 말을 쓰시오.</div>
+        <div style="background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 15px;">
+            동영상은 여러 개의 프레임을 빠른 속도로 넘겼을 때 생기는 ( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )(을)를 이용한 것이다.
+        </div>
+        <input type="text" id="q3_input" class="text-input" placeholder="정답을 입력하세요">
+        <button class="btn-check" onclick="checkTextAnswer('q3', '잔상효과', '잔상 효과')">정답 확인</button>
+        <div class="feedback" id="feedback_q3">
+            <div class="msg"></div>
+            <div class="explanation"><strong>해설:</strong> 동영상은 정지된 여러 장의 사진(프레임)을 빠르게 연속으로 보여주어 눈의 잔상 효과를 이용해 움직이는 것처럼 보이게 하는 원리입니다.</div>
+        </div>
+    </div>
+
+    <!-- 문제 4 -->
+    <div class="question-box" id="q4">
+        <div class="question-title">4. 다음 빈칸에 들어갈 알맞은 말을 쓰시오.</div>
+        <div style="background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 15px;">
+            ( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )은/는 합리적 의사 결정을 위해 수집한 데이터의 의미를 해석하여 유용한 정보를 찾아내는 과정을 의미한다.
+        </div>
+        <input type="text" id="q4_input" class="text-input" placeholder="정답을 입력하세요">
+        <button class="btn-check" onclick="checkTextAnswer('q4', '데이터분석', '데이터 분석')">정답 확인</button>
+        <div class="feedback" id="feedback_q4">
+            <div class="msg"></div>
+            <div class="explanation"><strong>해설:</strong> 수집된 데이터를 목적에 맞게 구조화하고 패턴을 찾아 의미를 도출하는 과정을 데이터 분석이라고 합니다.</div>
+        </div>
+    </div>
+
+    <!-- 문제 5 -->
+    <div class="question-box" id="q5">
+        <div class="question-title">5. 계층형 다이어그램 구조화 방법에 대한 설명이나 예시로 가장 적절한 것은?</div>
+        <div class="image-placeholder">[그림 3 삽입란]</div>
+        <ul class="options-list">
+            <li><label><input type="radio" name="q5_opt" value="1"> ① 데이터 간의 분류 체계와 관계를 파악하기 어렵다.</label></li>
+            <li><label><input type="radio" name="q5_opt" value="2"> ② 점, 선, 도형, 기호 등을 사용하여 데이터의 관계를 표현하는 그래프형 구조화 방법이다.</label></li>
+            <li><label><input type="radio" name="q5_opt" value="3"> ③ 대량의 데이터를 관리할 때 주로 사용하는 표 구조로 데이터의 추가와 수정이 쉽다.</label></li>
+            <li><label><input type="radio" name="q5_opt" value="4"> ④ 회사나 학급의 조직도, 컴퓨터의 폴더 구조 등을 표현하기에 적합하다.</label></li>
+        </ul>
+        <button class="btn-check" onclick="checkAnswer('q5', '4')">정답 확인</button>
+        <div class="feedback" id="feedback_q5">
+            <div class="msg"></div>
+            <div class="explanation"><strong>해설:</strong> 계층형 다이어그램은 상하 관계나 분류 체계가 명확한 조직도, 폴더 구조 등을 나타낼 때 가장 적합합니다. 2번은 그래프형 다이어그램, 3번은 표(또는 데이터베이스)에 대한 설명입니다.</div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function showFeedback(qId, isCorrect) {
+        const feedbackDiv = document.getElementById('feedback_' + qId);
+        const msgDiv = feedbackDiv.querySelector('.msg');
+        
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+        msgDiv.innerHTML = isCorrect ? '<strong>정답입니다! 🎉</strong>' : '<strong>오답입니다. 다시 시도해보세요.</strong>';
+    }
+
+    function checkAnswer(qId, correctValue) {
+        const options = document.getElementsByName(qId + '_opt');
+        let selectedValue = null;
+        for (const option of options) {
+            if (option.checked) {
+                selectedValue = option.value;
+                break;
+            }
+        }
+        
+        if (!selectedValue) {
+            alert('답을 선택해주세요.');
+            return;
+        }
+        
+        showFeedback(qId, selectedValue === correctValue);
+    }
+
+    function checkTextAnswer(qId, ...correctValues) {
+        let userInput = document.getElementById(qId + '_input').value.trim().replace(/\s+/g, '');
+        // 공백 제거 후 비교
+        let isCorrect = correctValues.some(val => val.replace(/\s+/g, '') === userInput);
+        
+        if (!userInput) {
+            alert('답을 입력해주세요.');
+            return;
+        }
+        
+        showFeedback(qId, isCorrect);
+    }
+</script>
+
+</body>
+</html>
