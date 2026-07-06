@@ -34,7 +34,7 @@
 
     <script>
         // --- 퀴즈 데이터 정의 ---
-        // 교재 이미지를 바탕으로 구성된 문제들입니다. (서술형 9번 제외)
+        // 교재 이미지를 바탕으로 구성된 문제들입니다.
         const questions = [
             { id: 1, type: 'ox', q: '아날로그는 연속적인 데이터를 불연속적이고 명확한 수치로 표현한 것이다.', a: 'X', hint: '불연속적이고 명확한 수치로 표현하는 것은 디지털입니다.' },
             { id: 2, type: 'ox', q: '문자, 이미지, 소리, 동영상과 같은 실생활 데이터는 컴퓨터 내부에서 모두 아날로그로 처리된다.', a: 'X', hint: '컴퓨터 내부에서는 모두 디지털(0과 1)로 처리됩니다.' },
@@ -47,8 +47,9 @@
             { id: 9, type: 'short', q: '동영상은 여러 개의 프레임을 빠른 속도로 넘겼을 때 생기는 <b>[ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]</b>(을)를 이용한 것이다.<br><br>빈칸에 들어갈 알맞은 말을 쓰시오.', a: '잔상효과', alt: '잔상 효과' },
             { id: 10, type: 'multiple', q: '데이터 수집에 관한 설명으로 알맞은 것을 [보기]에서 있는대로 고르시오.<br><div class="bg-gray-50 border border-gray-200 rounded p-4 my-3 text-sm font-normal text-left text-gray-700 leading-relaxed">[보기]<br>ㄱ. 관찰, 인터뷰, 설문 조사, 센서를 이용하는 방법은 데이터를 직접 수집하는 방법이다.<br>ㄴ. 검색 엔진과 데이터 전문 웹 사이트를 이용하면 목적에 맞는 데이터를 수집할 수 있지만 시간과 비용이 많이 든다.<br>ㄷ. 데이터를 수집할 때는 데이터의 객관성, 데이터의 품질, 데이터의 정확성을 확인해야 한다.</div>', options: ['ㄴ', 'ㄷ', 'ㄱ, ㄴ', 'ㄱ, ㄷ', 'ㄱ, ㄴ, ㄷ'], a: 3 },
             { id: 11, type: 'short', q: '데이터의 특성에 따른 종류와 활용에 관해 바르게 설명한 친구의 이름을 쓰시오.<br><div class="bg-gray-50 border border-gray-200 rounded p-4 my-3 text-sm font-normal text-left text-gray-700 leading-relaxed"><b>우현</b>: 수치형 데이터의 예에는 성별, 혈액형, 성취 등급이 있어.<br><b>예성</b>: 키, 몸무게, 전자 우편 수는 범주형 데이터라고 할 수 있어.<br><b>은지</b>: 수집한 데이터를 체계적으로 구분하면 데이터의 활용도를 높일 수 있어.</div>', a: '은지' },
-            { id: 12, type: 'multiple', q: '다음과 같은 데이터 구조화 방법에 관한 설명으로 알맞은 것은?<br><div class="overflow-x-auto my-3"><table class="w-full text-sm border-collapse border border-gray-300 text-center bg-white"><thead class="bg-gray-200"><tr><th class="border border-gray-300 p-2 font-medium">이름</th><th class="border border-gray-300 p-2 font-medium">전화번호</th><th class="border border-gray-300 p-2 font-medium">휴대전화 번호</th><th class="border border-gray-300 p-2 font-medium">주소</th></tr></thead><tbody><tr><td class="border border-gray-300 p-2">김O경</td><td class="border border-gray-300 p-2">3590-1***</td><td class="border border-gray-300 p-2">010-3***-****</td><td class="border border-gray-300 p-2">OO시</td></tr><tr><td class="border border-gray-300 p-2">김O수</td><td class="border border-gray-300 p-2">3490-2***</td><td class="border border-gray-300 p-2">010-5***-****</td><td class="border border-gray-300 p-2">△△군</td></tr></tbody></table></div>', options: ['계층형 다이어그램으로 구조화하였다.', '데이터 간의 분류 체계와 관계를 파악하기 쉽다.', '점, 선, 도형, 기호 등을 사용하여 데이터의 관계를 표현하는 구조화 방법이다.', '대량의 데이터를 관리할 때 주로 사용하는 구조로 데이터의 추가, 삭제, 수정이 쉽다.', '회사나 학급의 조직도, 컴퓨터의 폴더 구조 등도 이 방법으로 구조화하기 적합하다.'], a: 3 },
-            { id: 13, type: 'short', q: '합리적 의사 결정을 위해 수집한 데이터의 의미를 해석하여 유용한 정보를 찾아내는 과정을 의미하는 용어를 쓰시오.', a: '데이터분석', alt: '데이터 분석' }
+            { id: 12, type: 'multiple', q: '다음과 같은 데이터 구조화 방법에 관한 설명으로 알맞은 것은?<br><div class="overflow-x-auto my-3"><table class="w-full text-sm border-collapse border border-gray-300 text-center bg-white"><thead class="bg-gray-200"><tr><th class="border border-gray-300 p-2 font-medium">이름</th><th class="border border-gray-300 p-2 font-medium">전화번호</th><th class="border border-gray-300 p-2 font-medium">휴대전화 번호</th><th class="border border-gray-300 p-2 font-medium">주소</th></tr></thead><tbody><tr><td class="border border-gray-300 p-2">김O경</td><td class="border border-gray-300 p-2">3590-1***</td><td class="border border-gray-300 p-2">010-3***-****</td><td class="border border-gray-300 p-2">OO시</td></tr><tr><td class="border border-gray-300 p-2">김O수</td><td class="border border-gray-300 p-2">3490-2***</td><td class="border border-gray-300 p-2">010-5***-****</td><td class="border border-gray-300 p-2">△△군</td></tr></tbody></table></div>', options: ['계층형 다이어그램으로 구조화하였다.', '데이터 간의 분류 체계와 관계를 파악하기 쉽다.', '점 정, 선, 도형, 기호 등을 사용하여 데이터의 관계를 표현하는 구조화 방법이다.', '대량의 데이터를 관리할 때 주로 사용하는 구조로 데이터의 추가, 삭제, 수정이 쉽다.', '회사나 학급의 조직도, 컴퓨터의 폴더 구조 등도 이 방법으로 구조화하기 적합하다.'], a: 3 },
+            { id: 13, type: 'short', q: '합리적 의사 결정을 위해 수집한 데이터의 의미를 해석하여 유용한 정보를 찾아내는 과정을 의미하는 용어를 쓰시오.', a: '데이터분석', alt: '데이터 분석' },
+            { id: 14, type: 'essay', q: '데이터 구조화의 장점을 간단히 쓰시오.', a: '빠른 데이터 검색과 효율적인 데이터 관리가 가능하다. 시각적으로 표현하기 쉽기 때문에 데이터의 관계 파악과 분석이 편리하다.' }
         ];
 
         // --- 앱 상태 변수 ---
@@ -120,6 +121,13 @@
                         <button id="submit-btn" onclick="submitAnswer(document.getElementById('short-answer').value)" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-colors text-lg">제출하기</button>
                     </div>
                 `;
+            } else if (q.type === 'essay') {
+                html += `
+                    <div class="mt-4 flex-grow flex flex-col">
+                        <textarea id="essay-answer" placeholder="정답을 자유롭게 작성해보세요." class="w-full p-4 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-blue-500 text-lg flex-grow resize-none mb-4 min-h-[120px]"></textarea>
+                        <button id="submit-btn" onclick="checkEssay()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-colors text-lg">모범 답안 확인하기</button>
+                    </div>
+                `;
             }
 
             html += `
@@ -131,17 +139,58 @@
             
             // 렌더링 후 주관식이면 인풋에 포커스
             const inputEl = document.getElementById('short-answer');
+            const textareaEl = document.getElementById('essay-answer');
             if(inputEl) setTimeout(() => inputEl.focus(), 100);
+            if(textareaEl) setTimeout(() => textareaEl.focus(), 100);
         }
 
-        function submitAnswer(userAnswer) {
+        // 서술형 모범답안 확인 화면 생성 함수
+        function checkEssay() {
+            const q = questions[currentIdx];
+            const userAns = document.getElementById('essay-answer').value;
+            if(!userAns || userAns.trim() === '') {
+                showToast('답안을 작성해주세요.', 'bg-gray-800');
+                return;
+            }
+            
+            const contentEl = document.getElementById('quiz-content');
+            contentEl.innerHTML = `
+                <div class="mb-4">
+                    <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full mb-2">스스로 채점하기</span>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800 leading-tight">${q.q}</h2>
+                </div>
+                
+                <div class="mt-4 flex-grow flex flex-col justify-center space-y-4">
+                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-left">
+                        <div class="text-sm text-gray-500 font-bold mb-1">내가 쓴 답:</div>
+                        <div class="text-gray-800 break-words">${userAns.replace(/\n/g, '<br>')}</div>
+                    </div>
+                    <div class="p-4 bg-green-50 border border-green-200 rounded-xl text-left">
+                        <div class="text-sm text-green-600 font-bold mb-1">모범 답안:</div>
+                        <div class="text-green-800 font-medium break-words">${q.a}</div>
+                    </div>
+                    
+                    <div class="pt-4 text-center">
+                        <p class="text-gray-700 font-bold mb-3">모범 답안과 의미가 비슷하게 작성되었나요?</p>
+                        <div class="flex gap-4">
+                            <button onclick="submitAnswer('O', true)" class="flex-1 bg-blue-50 hover:bg-blue-100 border-2 border-blue-200 text-blue-600 font-bold py-3 rounded-xl transition-colors">네 (정답 처리)</button>
+                            <button onclick="submitAnswer('X', true)" class="flex-1 bg-red-50 hover:bg-red-100 border-2 border-red-200 text-red-600 font-bold py-3 rounded-xl transition-colors">아니요 (오답 처리)</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function submitAnswer(userAnswer, isSelfGraded = false) {
             if (isProcessing) return;
             
             const q = questions[currentIdx];
             let isCorrect = false;
 
             // 정답 체크 로직
-            if (q.type === 'ox' || q.type === 'multiple') {
+            if (isSelfGraded) {
+                isCorrect = (userAnswer === 'O');
+            } else if (q.type === 'ox' || q.type === 'multiple') {
                 isCorrect = (userAnswer === q.a);
             } else if (q.type === 'short') {
                 if(!userAnswer || userAnswer.trim() === '') {
@@ -170,8 +219,8 @@
 
             } else {
                 // 오답일 때
-                if (attempts === 0) {
-                    // 첫 번째 오답 -> 기회 한 번 더
+                if (attempts === 0 && !isSelfGraded) {
+                    // 첫 번째 오답 -> 기회 한 번 더 (자가 채점 서술형은 스킵)
                     attempts++;
                     showToast('아쉽네요! 한 번 더 기회가 있습니다. 🤔', 'bg-orange-500');
                     
@@ -187,9 +236,13 @@
                     isProcessing = false;
 
                 } else {
-                    // 두 번째 오답 -> 오답 노트에 추가 후 다음으로 넘어감
-                    const ansText = getAnswerText(q);
-                    showToast(`틀렸습니다! 정답은 [${ansText}] 입니다.`, 'bg-red-500');
+                    // 두 번째 오답 또는 자가 채점 오답 -> 오답 노트에 추가 후 다음으로 넘어감
+                    if (q.type === 'essay') {
+                        showToast('오답 노트에 추가되었습니다.', 'bg-red-500');
+                    } else {
+                        const ansText = getAnswerText(q);
+                        showToast(`틀렸습니다! 정답은 [${ansText}] 입니다.`, 'bg-red-500');
+                    }
                     wrongList.push(q);
                     
                     setTimeout(() => {
@@ -268,7 +321,7 @@
         function getAnswerText(q) {
             if (q.type === 'ox') return q.a;
             if (q.type === 'multiple') return `${q.a + 1}번. ${q.options[q.a]}`;
-            if (q.type === 'short') return q.a;
+            if (q.type === 'short' || q.type === 'essay') return q.a;
             return '';
         }
 
