@@ -3,259 +3,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>정보 2 - 단원평가 퀴즈</title>
+    <title>단원 평가 퀴즈</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti for fireworks effect -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        body {
-            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-            background-color: #f0f2f5;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-            margin: 0;
+        body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; }
+        .shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-        }
-        .question-box {
-            margin-bottom: 40px;
-            padding: 20px;
-            background: #fafafa;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-        }
-        .question-title {
-            font-size: 1.1em;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        .image-placeholder {
-            width: 100%;
-            height: 200px;
-            background-color: #e9ecef;
-            border: 2px dashed #adb5bd;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6c757d;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        .options-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .options-list li {
-            margin: 10px 0;
-            padding: 10px;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .options-list li:hover {
-            background: #f1f8ff;
-        }
-        .options-list input[type="radio"] {
-            margin-right: 10px;
-        }
-        .text-input {
-            width: 100%;
-            padding: 12px;
-            font-size: 1em;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-        }
-        .btn-check {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .btn-check:hover {
-            background-color: #2980b9;
-        }
-        .feedback {
-            margin-top: 15px;
-            padding: 15px;
-            border-radius: 6px;
-            display: none;
-            font-size: 0.95em;
-        }
-        .correct {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        .incorrect {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        .explanation {
-            margin-top: 10px;
-            font-size: 0.9em;
-            color: #555;
-            background: #fff;
-            padding: 10px;
-            border-radius: 4px;
-            border-left: 4px solid #3498db;
-        }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4 selection:bg-blue-200">
 
-<div class="container">
-    <h1>단원평가 퀴즈 (정보 2)</h1>
-
-    <!-- 문제 1 -->
-    <div class="question-box" id="q1">
-        <div class="question-title">1. 데이터 수집에 관한 설명으로 알맞은 것을 보기에서 있는 대로 고르시오.</div>
-        <div class="image-placeholder">[그림 1 삽입란]</div>
-        <div style="background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 15px;">
-            [보기]<br>
-            ㉠ 관찰, 인터뷰, 설문 조사, 센서를 이용하는 방법은 데이터를 직접 수집하는 방법이다.<br>
-            ㉡ 검색 엔진과 데이터 전문 웹 사이트를 이용하면 목적에 맞는 데이터를 수집할 수 있지만 시간과 비용이 많이 든다.<br>
-            ㉢ 데이터를 수집할 때는 데이터의 객관성, 데이터의 품질, 데이터의 정확성을 확인해야 한다.
-        </div>
-        <ul class="options-list">
-            <li><label><input type="radio" name="q1_opt" value="1"> ① ㉡</label></li>
-            <li><label><input type="radio" name="q1_opt" value="2"> ② ㉢</label></li>
-            <li><label><input type="radio" name="q1_opt" value="3"> ③ ㉠, ㉡</label></li>
-            <li><label><input type="radio" name="q1_opt" value="4"> ④ ㉠, ㉢</label></li>
-            <li><label><input type="radio" name="q1_opt" value="5"> ⑤ ㉠, ㉡, ㉢</label></li>
-        </ul>
-        <button class="btn-check" onclick="checkAnswer('q1', '4')">정답 확인</button>
-        <div class="feedback" id="feedback_q1">
-            <div class="msg"></div>
-            <div class="explanation"><strong>해설:</strong> ㉠과 ㉢은 올바른 설명입니다. ㉡ 검색 엔진 등을 이용한 간접 수집 방법은 직접 수집하는 것에 비해 오히려 시간과 비용을 절약할 수 있습니다.</div>
-        </div>
+    <div id="app" class="w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden relative min-h-[400px] flex flex-col fade-in">
+        <!-- 내용이 JS에 의해 여기에 동적으로 렌더링 됩니다. -->
     </div>
 
-    <!-- 문제 2 -->
-    <div class="question-box" id="q2">
-        <div class="question-title">2. 데이터의 특성에 따른 종류와 활용에 관해 바르게 설명한 친구의 이름을 쓰시오.</div>
-        <div class="image-placeholder">[그림 2 삽입란]</div>
-        <div style="background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 15px;">
-            - 우현: 수치형 데이터의 예에는 성별, 혈액형, 성취 등급이 있어.<br>
-            - 예성: 키, 몸무게, 전자 우편 수는 범주형 데이터라고 할 수 있어.<br>
-            - 은지: 수집한 데이터를 체계적으로 구분하면 데이터의 활용도를 높일 수 있어.
-        </div>
-        <input type="text" id="q2_input" class="text-input" placeholder="정답을 입력하세요 (예: 홍길동)">
-        <button class="btn-check" onclick="checkTextAnswer('q2', '은지')">정답 확인</button>
-        <div class="feedback" id="feedback_q2">
-            <div class="msg"></div>
-            <div class="explanation"><strong>해설:</strong> 우현이가 말한 성별, 혈액형 등은 '범주형 데이터'이며, 예성이가 말한 키, 몸무게 등은 '수치형 데이터'입니다. 은지의 설명만 올바릅니다.</div>
-        </div>
+    <!-- 피드백 메시지를 보여줄 토스트 알림 -->
+    <div id="toast" class="fixed top-5 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-lg text-white font-bold transition-all duration-300 opacity-0 pointer-events-none z-50 translate-y-[-20px]">
+        메시지
     </div>
 
-    <!-- 문제 3 -->
-    <div class="question-box" id="q3">
-        <div class="question-title">3. 다음 빈칸에 들어갈 알맞은 말을 쓰시오.</div>
-        <div style="background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 15px;">
-            동영상은 여러 개의 프레임을 빠른 속도로 넘겼을 때 생기는 ( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )(을)를 이용한 것이다.
-        </div>
-        <input type="text" id="q3_input" class="text-input" placeholder="정답을 입력하세요">
-        <button class="btn-check" onclick="checkTextAnswer('q3', '잔상효과', '잔상 효과')">정답 확인</button>
-        <div class="feedback" id="feedback_q3">
-            <div class="msg"></div>
-            <div class="explanation"><strong>해설:</strong> 동영상은 정지된 여러 장의 사진(프레임)을 빠르게 연속으로 보여주어 눈의 잔상 효과를 이용해 움직이는 것처럼 보이게 하는 원리입니다.</div>
-        </div>
-    </div>
+    <script>
+        // --- 퀴즈 데이터 정의 ---
+        // 교재 이미지를 바탕으로 구성된 문제들입니다. (서술형 9번 제외)
+        const questions = [
+            { id: 1, type: 'ox', q: '아날로그는 연속적인 데이터를 불연속적이고 명확한 수치로 표현한 것이다.', a: 'X', hint: '불연속적이고 명확한 수치로 표현하는 것은 디지털입니다.' },
+            { id: 2, type: 'ox', q: '문자, 이미지, 소리, 동영상과 같은 실생활 데이터는 컴퓨터 내부에서 모두 아날로그로 처리된다.', a: 'X', hint: '컴퓨터 내부에서는 모두 디지털(0과 1)로 처리됩니다.' },
+            { id: 3, type: 'ox', q: '데이터를 속성별로 구분하여 정리하면 목적에 따라 필요한 정보를 빠르게 찾을 수 있고, 데이터의 활용도를 높일 수 있다.', a: 'O' },
+            { id: 4, type: 'ox', q: '표는 데이터를 속성별로 구분하여 정리할 수 있고, 데이터의 추가·삭제·수정이 편리하여 대량의 데이터를 관리할 때 사용한다.', a: 'O' },
+            { id: 5, type: 'ox', q: '데이터 분석이란 수집한 데이터의 의미를 해석하며 유용한 정보를 찾아내는 과정을 뜻한다.', a: 'O' },
+            { id: 6, type: 'multiple', q: '디지털 데이터의 특징으로 알맞은 것은?', options: ['데이터를 검색하고 공유하기 어렵다.', '데이터의 편집, 가공, 전송이 어렵다.', '많은 양의 데이터를 효율적으로 저장하고 처리할 수 있다.', '적은 양의 데이터를 저장하기 위해 많은 저장 공간이 필요하다.', '디지털 기기 간에 데이터를 전송하려면 별도의 장치가 필요하다.'], a: 2 },
+            { id: 7, type: 'multiple', q: '이미지를 디지털로 표현하는 방법 중 비트맵 방식의 설명으로 알맞은 것을 [보기]에서 모두 고르시오.<br><div class="bg-gray-50 border border-gray-200 rounded p-4 my-3 text-sm font-normal text-left text-gray-700 leading-relaxed">[보기]<br>ㄱ. 이미지를 픽셀 단위로 구분해서 표현한다.<br>ㄴ. 수식을 이용하여 선, 색상, 모양 등을 표현한다.<br>ㄷ. 컴퓨터는 색상 코드를 사용하여 픽셀 정보를 저장하고 표현한다.<br>ㄹ. 픽셀 수와 색상 수가 적어질수록 이미지가 실제와 같아지고 정교해진다.</div>', options: ['ㄱ, ㄴ', 'ㄱ, ㄷ', 'ㄱ, ㄹ', 'ㄴ, ㄷ', 'ㄷ, ㄹ'], a: 1 },
+            { id: 8, type: 'short', q: '아날로그 소리의 파형을 일정 간격으로 나누고, 소리의 크기를 가까운 정숫값으로 표현한 뒤, <b>[ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]</b>(으)로 변환하여 디지털 소리로 표현한다.<br><br>빈칸에 들어갈 알맞은 용어를 쓰시오.', a: '이진수' },
+            { id: 9, type: 'short', q: '동영상은 여러 개의 프레임을 빠른 속도로 넘겼을 때 생기는 <b>[ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]</b>(을)를 이용한 것이다.<br><br>빈칸에 들어갈 알맞은 말을 쓰시오.', a: '잔상효과', alt: '잔상 효과' },
+            { id: 10, type: 'multiple', q: '데이터 수집에 관한 설명으로 알맞은 것을 [보기]에서 있는대로 고르시오.<br><div class="bg-gray-50 border border-gray-200 rounded p-4 my-3 text-sm font-normal text-left text-gray-700 leading-relaxed">[보기]<br>ㄱ. 관찰, 인터뷰, 설문 조사, 센서를 이용하는 방법은 데이터를 직접 수집하는 방법이다.<br>ㄴ. 검색 엔진과 데이터 전문 웹 사이트를 이용하면 목적에 맞는 데이터를 수집할 수 있지만 시간과 비용이 많이 든다.<br>ㄷ. 데이터를 수집할 때는 데이터의 객관성, 데이터의 품질, 데이터의 정확성을 확인해야 한다.</div>', options: ['ㄴ', 'ㄷ', 'ㄱ, ㄴ', 'ㄱ, ㄷ', 'ㄱ, ㄴ, ㄷ'], a: 3 },
+            { id: 11, type: 'short', q: '데이터의 특성에 따른 종류와 활용에 관해 바르게 설명한 친구의 이름을 쓰시오.<br><div class="bg-gray-50 border border-gray-200 rounded p-4 my-3 text-sm font-normal text-left text-gray-700 leading-relaxed"><b>우현</b>: 수치형 데이터의 예에는 성별, 혈액형, 성취 등급이 있어.<br><b>예성</b>: 키, 몸무게, 전자 우편 수는 범주형 데이터라고 할 수 있어.<br><b>은지</b>: 수집한 데이터를 체계적으로 구분하면 데이터의 활용도를 높일 수 있어.</div>', a: '은지' },
+            { id: 12, type: 'multiple', q: '다음과 같은 데이터 구조화 방법에 관한 설명으로 알맞은 것은?<br><div class="overflow-x-auto my-3"><table class="w-full text-sm border-collapse border border-gray-300 text-center bg-white"><thead class="bg-gray-200"><tr><th class="border border-gray-300 p-2 font-medium">이름</th><th class="border border-gray-300 p-2 font-medium">전화번호</th><th class="border border-gray-300 p-2 font-medium">휴대전화 번호</th><th class="border border-gray-300 p-2 font-medium">주소</th></tr></thead><tbody><tr><td class="border border-gray-300 p-2">김O경</td><td class="border border-gray-300 p-2">3590-1***</td><td class="border border-gray-300 p-2">010-3***-****</td><td class="border border-gray-300 p-2">OO시</td></tr><tr><td class="border border-gray-300 p-2">김O수</td><td class="border border-gray-300 p-2">3490-2***</td><td class="border border-gray-300 p-2">010-5***-****</td><td class="border border-gray-300 p-2">△△군</td></tr></tbody></table></div>', options: ['계층형 다이어그램으로 구조화하였다.', '데이터 간의 분류 체계와 관계를 파악하기 쉽다.', '점, 선, 도형, 기호 등을 사용하여 데이터의 관계를 표현하는 구조화 방법이다.', '대량의 데이터를 관리할 때 주로 사용하는 구조로 데이터의 추가, 삭제, 수정이 쉽다.', '회사나 학급의 조직도, 컴퓨터의 폴더 구조 등도 이 방법으로 구조화하기 적합하다.'], a: 3 },
+            { id: 13, type: 'short', q: '합리적 의사 결정을 위해 수집한 데이터의 의미를 해석하여 유용한 정보를 찾아내는 과정을 의미하는 용어를 쓰시오.', a: '데이터분석', alt: '데이터 분석' }
+        ];
 
-    <!-- 문제 4 -->
-    <div class="question-box" id="q4">
-        <div class="question-title">4. 다음 빈칸에 들어갈 알맞은 말을 쓰시오.</div>
-        <div style="background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 15px;">
-            ( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )은/는 합리적 의사 결정을 위해 수집한 데이터의 의미를 해석하여 유용한 정보를 찾아내는 과정을 의미한다.
-        </div>
-        <input type="text" id="q4_input" class="text-input" placeholder="정답을 입력하세요">
-        <button class="btn-check" onclick="checkTextAnswer('q4', '데이터분석', '데이터 분석')">정답 확인</button>
-        <div class="feedback" id="feedback_q4">
-            <div class="msg"></div>
-            <div class="explanation"><strong>해설:</strong> 수집된 데이터를 목적에 맞게 구조화하고 패턴을 찾아 의미를 도출하는 과정을 데이터 분석이라고 합니다.</div>
-        </div>
-    </div>
+        // --- 앱 상태 변수 ---
+        let currentIdx = 0;
+        let attempts = 0; // 현재 문제에서 틀린 횟수
+        let wrongList = [];
+        let isProcessing = false; // 버튼 연타 방지
 
-    <!-- 문제 5 -->
-    <div class="question-box" id="q5">
-        <div class="question-title">5. 계층형 다이어그램 구조화 방법에 대한 설명이나 예시로 가장 적절한 것은?</div>
-        <div class="image-placeholder">[그림 3 삽입란]</div>
-        <ul class="options-list">
-            <li><label><input type="radio" name="q5_opt" value="1"> ① 데이터 간의 분류 체계와 관계를 파악하기 어렵다.</label></li>
-            <li><label><input type="radio" name="q5_opt" value="2"> ② 점, 선, 도형, 기호 등을 사용하여 데이터의 관계를 표현하는 그래프형 구조화 방법이다.</label></li>
-            <li><label><input type="radio" name="q5_opt" value="3"> ③ 대량의 데이터를 관리할 때 주로 사용하는 표 구조로 데이터의 추가와 수정이 쉽다.</label></li>
-            <li><label><input type="radio" name="q5_opt" value="4"> ④ 회사나 학급의 조직도, 컴퓨터의 폴더 구조 등을 표현하기에 적합하다.</label></li>
-        </ul>
-        <button class="btn-check" onclick="checkAnswer('q5', '4')">정답 확인</button>
-        <div class="feedback" id="feedback_q5">
-            <div class="msg"></div>
-            <div class="explanation"><strong>해설:</strong> 계층형 다이어그램은 상하 관계나 분류 체계가 명확한 조직도, 폴더 구조 등을 나타낼 때 가장 적합합니다. 2번은 그래프형 다이어그램, 3번은 표(또는 데이터베이스)에 대한 설명입니다.</div>
-        </div>
-    </div>
+        const appEl = document.getElementById('app');
+        const toastEl = document.getElementById('toast');
 
-</div>
+        // --- 렌더링 함수들 ---
 
-<script>
-    function showFeedback(qId, isCorrect) {
-        const feedbackDiv = document.getElementById('feedback_' + qId);
-        const msgDiv = feedbackDiv.querySelector('.msg');
-        
-        feedbackDiv.style.display = 'block';
-        feedbackDiv.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
-        msgDiv.innerHTML = isCorrect ? '<strong>정답입니다! 🎉</strong>' : '<strong>오답입니다. 다시 시도해보세요.</strong>';
-    }
+        function startQuiz() {
+            currentIdx = 0;
+            wrongList = [];
+            renderQuestion();
+        }
 
-    function checkAnswer(qId, correctValue) {
-        const options = document.getElementsByName(qId + '_opt');
-        let selectedValue = null;
-        for (const option of options) {
-            if (option.checked) {
-                selectedValue = option.value;
-                break;
+        function renderQuestion() {
+            if (currentIdx >= questions.length) {
+                renderResult();
+                return;
+            }
+
+            attempts = 0; // 문제 넘어갈 때 기회 초기화
+            isProcessing = false;
+            const q = questions[currentIdx];
+            const progressPct = ((currentIdx) / questions.length) * 100;
+
+            let html = `
+                <!-- 진행률 바 -->
+                <div class="h-2 w-full bg-gray-200">
+                    <div class="h-2 bg-blue-500 transition-all duration-500" style="width: ${progressPct}%"></div>
+                </div>
+                
+                <div class="p-6 md:p-8 flex-grow flex flex-col" id="quiz-content">
+                    <div class="mb-4">
+                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full mb-2">문제 ${currentIdx + 1} / ${questions.length}</span>
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-800 leading-tight">${q.q}</h2>
+                    </div>
+                    
+                    <div class="mt-4 flex-grow flex flex-col justify-center">
+            `;
+
+            // 문제 유형에 따른 입력부 렌더링
+            if (q.type === 'ox') {
+                html += `
+                    <div class="flex gap-4">
+                        <button onclick="submitAnswer('O')" class="flex-1 bg-blue-50 hover:bg-blue-100 border-2 border-blue-200 text-blue-600 font-bold text-4xl py-12 rounded-xl transition-colors">O</button>
+                        <button onclick="submitAnswer('X')" class="flex-1 bg-red-50 hover:bg-red-100 border-2 border-red-200 text-red-600 font-bold text-4xl py-12 rounded-xl transition-colors">X</button>
+                    </div>
+                `;
+            } else if (q.type === 'multiple') {
+                html += `<div class="space-y-3">`;
+                q.options.forEach((opt, idx) => {
+                    html += `
+                        <button onclick="submitAnswer(${idx})" class="w-full text-left p-4 border border-gray-300 rounded-xl hover:bg-blue-50 hover:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-gray-700 flex items-center">
+                            <span class="w-8 h-8 flex items-center justify-center bg-gray-100 text-gray-600 font-bold rounded-full mr-3 shrink-0">${idx + 1}</span>
+                            <span>${opt}</span>
+                        </button>
+                    `;
+                });
+                html += `</div>`;
+            } else if (q.type === 'short') {
+                html += `
+                    <div class="mt-4">
+                        <input type="text" id="short-answer" placeholder="정답을 입력하세요" class="w-full p-4 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-blue-500 text-lg text-center" onkeypress="if(event.key==='Enter') document.getElementById('submit-btn').click();" autocomplete="off">
+                        <button id="submit-btn" onclick="submitAnswer(document.getElementById('short-answer').value)" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-colors text-lg">제출하기</button>
+                    </div>
+                `;
+            }
+
+            html += `
+                    </div>
+                </div>
+            `;
+            
+            appEl.innerHTML = html;
+            
+            // 렌더링 후 주관식이면 인풋에 포커스
+            const inputEl = document.getElementById('short-answer');
+            if(inputEl) setTimeout(() => inputEl.focus(), 100);
+        }
+
+        function submitAnswer(userAnswer) {
+            if (isProcessing) return;
+            
+            const q = questions[currentIdx];
+            let isCorrect = false;
+
+            // 정답 체크 로직
+            if (q.type === 'ox' || q.type === 'multiple') {
+                isCorrect = (userAnswer === q.a);
+            } else if (q.type === 'short') {
+                if(!userAnswer || userAnswer.trim() === '') {
+                    showToast('정답을 입력해주세요.', 'bg-gray-800');
+                    return;
+                }
+                // 공백 제거 후 비교하여 유연한 채점
+                const cleanUserAns = userAnswer.replace(/\s+/g, '').toLowerCase();
+                const cleanAns = q.a.replace(/\s+/g, '').toLowerCase();
+                const cleanAltAns = q.alt ? q.alt.replace(/\s+/g, '').toLowerCase() : null;
+                
+                isCorrect = (cleanUserAns === cleanAns || cleanUserAns === cleanAltAns);
+            }
+
+            isProcessing = true;
+
+            if (isCorrect) {
+                // 정답일 때
+                showToast('🎉 정답입니다!', 'bg-green-500');
+                fireConfetti();
+                
+                setTimeout(() => {
+                    currentIdx++;
+                    renderQuestion();
+                }, 1500);
+
+            } else {
+                // 오답일 때
+                if (attempts === 0) {
+                    // 첫 번째 오답 -> 기회 한 번 더
+                    attempts++;
+                    showToast('아쉽네요! 한 번 더 기회가 있습니다. 🤔', 'bg-orange-500');
+                    
+                    const quizContent = document.getElementById('quiz-content');
+                    quizContent.classList.remove('shake');
+                    void quizContent.offsetWidth; // trigger reflow
+                    quizContent.classList.add('shake');
+                    
+                    if(q.type === 'short') {
+                        document.getElementById('short-answer').value = '';
+                        document.getElementById('short-answer').focus();
+                    }
+                    isProcessing = false;
+
+                } else {
+                    // 두 번째 오답 -> 오답 노트에 추가 후 다음으로 넘어감
+                    const ansText = getAnswerText(q);
+                    showToast(`틀렸습니다! 정답은 [${ansText}] 입니다.`, 'bg-red-500');
+                    wrongList.push(q);
+                    
+                    setTimeout(() => {
+                        currentIdx++;
+                        renderQuestion();
+                    }, 2000);
+                }
             }
         }
-        
-        if (!selectedValue) {
-            alert('답을 선택해주세요.');
-            return;
-        }
-        
-        showFeedback(qId, selectedValue === correctValue);
-    }
 
-    function checkTextAnswer(qId, ...correctValues) {
-        let userInput = document.getElementById(qId + '_input').value.trim().replace(/\s+/g, '');
-        // 공백 제거 후 비교
-        let isCorrect = correctValues.some(val => val.replace(/\s+/g, '') === userInput);
-        
-        if (!userInput) {
-            alert('답을 입력해주세요.');
-            return;
-        }
-        
-        showFeedback(qId, isCorrect);
-    }
-</script>
+        // 결과 화면
+        function renderResult() {
+            const score = questions.length - wrongList.length;
+            const isPerfect = wrongList.length === 0;
+            
+            let html = `
+                <div class="h-2 w-full bg-blue-500"></div>
+                <div class="p-8 flex flex-col items-center justify-center flex-grow text-center fade-in">
+                    <div class="text-6xl mb-4">${isPerfect ? '🏆' : '👏'}</div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">퀴즈 완료!</h2>
+                    <p class="text-lg text-gray-600 mb-6">총 ${questions.length}문제 중 <strong class="text-blue-600 text-2xl">${score}</strong>문제를 맞혔습니다.</p>
+            `;
 
+            if (isPerfect) {
+                html += `<p class="text-green-600 font-bold text-xl mb-8">모든 문제를 맞히셨습니다! 완벽해요!</p>`;
+                fireConfetti(true);
+            } else {
+                html += `<button onclick="renderWrongNotes()" class="mb-4 bg-orange-100 text-orange-700 hover:bg-orange-200 font-bold py-3 px-6 rounded-xl transition-colors border border-orange-300">오답 노트 보기 (${wrongList.length}문제)</button>`;
+            }
+
+            html += `
+                    <button onclick="startQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl transition-colors w-full max-w-xs mt-4">처음부터 다시 풀기</button>
+                </div>
+            `;
+            
+            appEl.innerHTML = html;
+        }
+
+        // 오답 노트 화면
+        function renderWrongNotes() {
+            let html = `
+                <div class="h-2 w-full bg-orange-400"></div>
+                <div class="p-6 md:p-8 flex-col flex-grow overflow-y-auto max-h-[80vh] fade-in bg-gray-50">
+                    <div class="flex justify-between items-center mb-6 sticky top-0 bg-gray-50 py-2 border-b">
+                        <h2 class="text-2xl font-bold text-gray-800">📝 오답 노트</h2>
+                        <button onclick="renderResult()" class="text-sm bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded text-gray-700">결과로 돌아가기</button>
+                    </div>
+                    <div class="space-y-6 pb-6">
+            `;
+
+            wrongList.forEach((q, idx) => {
+                html += `
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+                        <div class="text-sm text-red-500 font-bold mb-2">틀린 문제 ${idx + 1}</div>
+                        <p class="font-medium text-gray-800 mb-4">${q.q}</p>
+                        
+                        <div class="bg-green-50 text-green-800 p-3 rounded-lg border border-green-200 flex items-start">
+                            <span class="font-bold mr-2 whitespace-nowrap">정답:</span>
+                            <span>${getAnswerText(q)}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                    <button onclick="startQuiz()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-colors text-lg sticky bottom-0 shadow-[0_-10px_15px_-3px_rgba(249,250,251,1)]">다시 풀기</button>
+                </div>
+            `;
+            
+            appEl.innerHTML = html;
+        }
+
+        // --- 유틸리티 함수들 ---
+
+        function getAnswerText(q) {
+            if (q.type === 'ox') return q.a;
+            if (q.type === 'multiple') return `${q.a + 1}번. ${q.options[q.a]}`;
+            if (q.type === 'short') return q.a;
+            return '';
+        }
+
+        let toastTimeout;
+        function showToast(message, colorClass) {
+            toastEl.textContent = message;
+            // 초기화
+            toastEl.className = `fixed top-5 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-lg text-white font-bold transition-all duration-300 z-50 ${colorClass}`;
+            
+            // 나타나기 애니메이션 적용
+            setTimeout(() => {
+                toastEl.classList.remove('opacity-0', 'translate-y-[-20px]');
+                toastEl.classList.add('opacity-100', 'translate-y-0');
+            }, 10);
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toastEl.classList.remove('opacity-100', 'translate-y-0');
+                toastEl.classList.add('opacity-0', 'translate-y-[-20px]');
+            }, 1500);
+        }
+
+        function fireConfetti(isContinuous = false) {
+            if(isContinuous) {
+                var duration = 3000;
+                var end = Date.now() + duration;
+                (function frame() {
+                    confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffa62d', '#ff36ff'] });
+                    confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffa62d', '#ff36ff'] });
+                    if (Date.now() < end) requestAnimationFrame(frame);
+                }());
+            } else {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6']
+                });
+            }
+        }
+
+        // 앱 시작
+        startQuiz();
+
+    </script>
 </body>
 </html>
